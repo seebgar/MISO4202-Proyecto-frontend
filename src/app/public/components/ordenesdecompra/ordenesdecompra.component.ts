@@ -12,24 +12,24 @@ import { LocalDataSource } from "ng2-smart-table";
 import { MainService } from "src/app/service/main.service";
 import { NbToastrService, NbDialogService } from "@nebular/theme";
 import { FormGroupDirective } from "@angular/forms";
-
+ 	
 @Component({
-  selector: "app-proveedores",
-  templateUrl: "./proveedores.component.html",
-  styleUrls: ["./proveedores.component.scss"],
+  selector: "app-ordenesdecompra",
+  templateUrl: "./ordenesdecompra.component.html",
+  styleUrls: ["./ordenesdecompra.component.scss"],
 })
-export class ProveedoresComponent implements OnInit, OnDestroy {
+export class OrdenesDeCompraComponent implements OnInit, OnDestroy {
   /* Manejo de Usuario */
   public user: any = {};
 
   /* Titulo en HTML */
-  public titulo = "Proveedores";
+  public titulo = "OrdenesDeCompra";
 
   /* Indica el estado de carga */
   public cargando: boolean = false;
 
   /* API Routes */
-  readonly API_ALL: string = "api/proveedor";
+  readonly API_ALL: string = "api/ordenesdecompra";
 
   /* Observables - Async */
   public allObervable: Observable<any>;
@@ -51,9 +51,9 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
 
   /* Dialog que se encuentra abierto */
   public dialogActivo: any;
-
+  
   constructor(
-    //  private authService: AuthService,
+  //  private authService: AuthService,
     private mainService: MainService,
     private toastrService: NbToastrService,
     private dialogService: NbDialogService,
@@ -64,7 +64,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //  this.user = this.authService.user;
+  //  this.user = this.authService.user;
 
     if (this.isAdmin()) {
       this.getAll();
@@ -72,7 +72,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach((subs) => subs.unsubscribe());
+    this.subscriptions.forEach(subs => subs.unsubscribe());
   }
 
   // =================================
@@ -161,7 +161,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
     });
 
     const subs = this.allObervable.subscribe(
-      (response) => {
+      response => {
         if (response) {
           if (response.errors) {
             this.handleError({ error: response.message });
@@ -174,7 +174,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
           this.source.load([]);
         }
       },
-      (error) => {
+      error => {
         this.handleError({ error });
         this.cargando = false;
         this.source.load([]);
@@ -186,6 +186,8 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(subs);
   }
+
+ 
 
   /**
    * Crea un objeto usando la msmart table
@@ -200,14 +202,14 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
       });
       return;
     }
-
+   
     const request = this.mainService.post({
       api: `${this.API_ALL}`,
-      data: content.newData,
+      data:  content.newData,
     });
 
     request.subscribe(
-      (response) => {
+      response => {
         if (response) {
           if (response.errors) {
             this.handleError({ error: response.message });
@@ -219,7 +221,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
           this.handleResponseNull();
         }
       },
-      (error) => {
+      error => {
         this.handleError({ error });
       },
       () => {}
@@ -246,7 +248,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
     });
 
     request.subscribe(
-      (response) => {
+      response => {
         if (response) {
           if (response.errors) {
             this.handleError({ error: response.message });
@@ -258,7 +260,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
           this.handleResponseNull();
         }
       },
-      (error) => {
+      error => {
         this.handleError({ error });
       }
     );
@@ -290,7 +292,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
     });
 
     request.subscribe(
-      (response) => {
+      response => {
         if (response) {
           if (response.errors) {
             this.handleError({ error: response.message });
@@ -302,7 +304,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
           this.handleResponseNull();
         }
       },
-      (error) => {
+      error => {
         this.handleError({ error });
       }
     );
@@ -311,21 +313,23 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
   // =================================
   // Metodos Genericos
   // ================================
-
+ 
+ 
   /**
    * Nebular Smart Table configuration
    * @returns void
    */
   public config(): void {
+  
     // configuracion de la Tabla Smart
-
-    this.settings = {
-      pager: {
-        display: true,
-        perPage: 15,
+ 		
+	this.settings = {
+    	pager: {
+        	display: true,
+        	perPage: 15,
       },
       hideSubHeader: false,
-
+      
       actions: {
         columnTitle: "Opciones",
         add: true,
@@ -334,7 +338,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
         delete: true,
         position: "left",
       },
-
+     
       delete: {
         deleteButtonContent: '<i class="nb-trash"></i>',
         confirmDelete: true,
@@ -353,42 +357,48 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
       },
       mode: "inline",
       columns: {
-        razonSocial: {
-          title: "Razon Social",
-          editable: true,
-          filter: true,
-          width: "15%",
-        },
-        nit: {
-          title: "NIT",
-          editable: false,
-          filter: true,
-          width: "15%",
-        },
-        direccion: {
-          title: "Dirección",
-          editable: true,
-          filter: true,
-          width: "15%",
-        },
-        telefono: {
-          title: "Teléfono",
-          editable: false,
-          filter: true,
-          width: "15%",
-        },
-        ordenesEnProceso: {
-          title: "Ordenes en Proceso",
-          editable: true,
-          filter: true,
-          width: "15%",
-        },
-        ordenesCompletadas: {
-          title: "Ordenes Completadas",
-          editable: false,
-          filter: true,
-          width: "15%",
-        },
+      		Recibido: {
+	          title: "Recibido",
+	          editable: true,
+	          filter: true,
+	          width: "12%",
+	        },
+      		Insumos: {
+	          title: "Insumos",
+	          editable: true,
+	          filter: true,
+	          width: "12%",
+	        },
+      		Descripcion: {
+	          title: "Descripción",
+	          editable: true,
+	          filter: true,
+	          width: "12%",
+	        },
+      		Ajustada: {
+	          title: "Ajustada",
+	          editable: true,
+	          filter: true,
+	          width: "12%",
+	        },
+      		Anulada: {
+	          title: "Anulada",
+	          editable: true,
+	          filter: true,
+	          width: "12%",
+	        },
+      		FechaLLegada: {
+	          title: "Fecha de llegada",
+	          editable: true,
+	          filter: true,
+	          width: "12%",
+	        },
+      		ValorTotal: {
+	          title: "Valor Total",
+	          editable: true,
+	          filter: true,
+	          width: "12%",
+	        },
       },
     };
   }
@@ -449,7 +459,7 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
    * @return void
    */
   public routerNavigateTo({ path }: { path: string }): void {
-    this.router.navigate([path]).then((fulfilled) => {
+    this.router.navigate([path]).then(fulfilled => {
       if (!fulfilled) {
         this.showToastr({
           title: "Direcci�n URL no v�lida.",

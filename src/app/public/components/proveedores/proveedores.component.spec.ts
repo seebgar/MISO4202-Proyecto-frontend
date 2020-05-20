@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
-import { InsumosComponent } from './insumos.component';
+import { ProveedoresComponent } from './proveedores.component';
 
-describe('InsumosComponent', () => {
-  let component: InsumosComponent;
-  let fixture: ComponentFixture<InsumosComponent>;
+describe('ProveedoresComponent', () => {
+  let component: ProveedoresComponent;
+  let fixture: ComponentFixture<ProveedoresComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InsumosComponent ],
+      declarations: [ ProveedoresComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InsumosComponent);
+    fixture = TestBed.createComponent(ProveedoresComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

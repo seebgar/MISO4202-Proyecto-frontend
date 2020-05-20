@@ -14,22 +14,22 @@ import { NbToastrService, NbDialogService } from "@nebular/theme";
 import { FormGroupDirective } from "@angular/forms";
 
 @Component({
-  selector: "app-proveedores",
-  templateUrl: "./proveedores.component.html",
-  styleUrls: ["./proveedores.component.scss"],
+  selector: "app-productos",
+  templateUrl: "./productos.component.html",
+  styleUrls: ["./productos.component.scss"],
 })
-export class ProveedoresComponent implements OnInit, OnDestroy {
+export class ProductosComponent implements OnInit, OnDestroy {
   /* Manejo de Usuario */
   public user: any = {};
 
   /* Titulo en HTML */
-  public titulo = "Proveedores";
+  public titulo = "Productos";
 
   /* Indica el estado de carga */
   public cargando: boolean = false;
 
   /* API Routes */
-  readonly API_ALL: string = "api/proveedor";
+  readonly API_ALL: string = "api/producto";
 
   /* Observables - Async */
   public allObervable: Observable<any>;
@@ -353,41 +353,23 @@ export class ProveedoresComponent implements OnInit, OnDestroy {
       },
       mode: "inline",
       columns: {
-        razonSocial: {
-          title: "Razon Social",
+        nombre: {
+          title: "Nombre",
           editable: true,
           filter: true,
-          width: "15%",
+          width: "30%",
         },
-        nit: {
-          title: "NIT",
-          editable: false,
-          filter: true,
-          width: "15%",
-        },
-        direccion: {
-          title: "Dirección",
+        inventarioActual: {
+          title: "Inventario Actual",
           editable: true,
           filter: true,
-          width: "15%",
+          width: "30%",
         },
-        telefono: {
-          title: "Teléfono",
-          editable: false,
-          filter: true,
-          width: "15%",
-        },
-        ordenesEnProceso: {
-          title: "Ordenes en Proceso",
+        insumos: {
+          title: "Insumos",
           editable: true,
           filter: true,
-          width: "15%",
-        },
-        ordenesCompletadas: {
-          title: "Ordenes Completadas",
-          editable: false,
-          filter: true,
-          width: "15%",
+          width: "30%",
         },
       },
     };

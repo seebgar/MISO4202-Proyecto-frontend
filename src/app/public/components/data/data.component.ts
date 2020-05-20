@@ -10,7 +10,7 @@ import { FormGroup, FormControl } from "@angular/forms"; //imports
 @Component({
   selector: "app-data",
   templateUrl: "./data.component.html",
-  styleUrls: ["./data.component.scss"],
+  //styleUrls: ["./data.component.scss"],
 })
 export class DataComponent implements OnInit {
   /* Manejo de Usuario */
@@ -22,7 +22,7 @@ export class DataComponent implements OnInit {
   /* Indica el estado de carga */
   public cargando: boolean = false;
 
-  public api: any = { route: "insumo" };
+  public api: any = { route: "ordenesdecompra" };
 
   /* Child Refs */
   @ViewChild("csvReader") csvReader: any;
@@ -42,7 +42,7 @@ export class DataComponent implements OnInit {
   // ================================
 
   /**
-   * Verifica si el usuario en sesión tiene
+   * Verifica si el usuario en sesi�n tiene
    * permisos de administrador
    * @returns {boolean}
    */
@@ -111,7 +111,7 @@ export class DataComponent implements OnInit {
    */
   public handleResponseNull(): void {
     this.showToastr({
-      title: "No se ha establecido una conexión con el servidor.",
+      title: "No se ha establecido una conexi�n con el servidor.",
       status: "basic",
     });
   }
@@ -227,7 +227,7 @@ export class DataComponent implements OnInit {
 
   /**
    * Muestra una notificacion estilo Toastr en la pantalla actual
-   * @param  {string} position determina en que parte de la pantalla se representará el Toastr
+   * @param  {string} position determina en que parte de la pantalla se representar� el Toastr
    * @param  {any} title titulo del Toastr
    * @param  {any} message contenido del Toastr
    * @param  {any} status puede ser (basic, primary, success, info, warning, danger, control)
@@ -263,7 +263,7 @@ export class DataComponent implements OnInit {
     this.router.navigate([path]).then((fulfilled) => {
       if (!fulfilled) {
         this.showToastr({
-          title: "Dirección URL no válida.",
+          title: "Direcci�n URL no v�lida.",
           status: "basic",
         });
       }

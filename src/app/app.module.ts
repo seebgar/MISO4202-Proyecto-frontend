@@ -38,9 +38,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ChartComponent } from "./public/components/chart/chart.component";
 import { DashboardComponent } from "./public/components/dashboard/dashboard.component";
-import { InsumosComponent } from "./public/components/insumos/insumos.component";
 import { LoginComponent } from "./public/components/login/login.component";
-import { ProveedoresComponent } from "./public/components/proveedores/proveedores.component";
 import { RegisterComponent } from "./public/components/register/register.component";
 import { HomeComponent } from "./public/home/home.component";
 import { FooterComponent } from "./public/layout/footer/footer.component";
@@ -52,6 +50,14 @@ import { JwtInterceptor } from "./service/jwt-interceptor.service";
 import { MainService } from "./service/main.service";
 import { DataComponent } from "./public/components/data/data.component";
 
+
+import { InsumosComponent } from "./public/components/insumos/insumos.component";
+import { ProveedoresComponent } from "./public/components/proveedores/proveedores.component";
+import { ProductosComponent } from "./public/components/productos/productos.component";
+import { OrdenesDeCompraComponent } from "./public/components/ordenesdecompra/ordenesdecompra.component";
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,22 +65,27 @@ import { DataComponent } from "./public/components/data/data.component";
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
-    InsumosComponent,
-    ProveedoresComponent,
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    ChartComponent,
     DataComponent,
+	
+	 InsumosComponent,
+	 ProveedoresComponent,
+	 ProductosComponent,
+	 OrdenesDeCompraComponent,
+   
+    
+    ChartComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule,
     ReactiveFormsModule,
     ChartModule,
+    FormsModule,
 
     NbThemeModule.forRoot({ name: "default" }),
 

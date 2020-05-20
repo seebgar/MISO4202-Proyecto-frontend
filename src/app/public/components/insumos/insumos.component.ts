@@ -12,7 +12,7 @@ import { LocalDataSource } from "ng2-smart-table";
 import { MainService } from "src/app/service/main.service";
 import { NbToastrService, NbDialogService } from "@nebular/theme";
 import { FormGroupDirective } from "@angular/forms";
-
+ 	
 @Component({
   selector: "app-insumos",
   templateUrl: "./insumos.component.html",
@@ -51,9 +51,9 @@ export class InsumosComponent implements OnInit, OnDestroy {
 
   /* Dialog que se encuentra abierto */
   public dialogActivo: any;
-
+  
   constructor(
-    //  private authService: AuthService,
+  //  private authService: AuthService,
     private mainService: MainService,
     private toastrService: NbToastrService,
     private dialogService: NbDialogService,
@@ -64,7 +64,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //  this.user = this.authService.user;
+  //  this.user = this.authService.user;
 
     if (this.isAdmin()) {
       this.getAll();
@@ -72,7 +72,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach((subs) => subs.unsubscribe());
+    this.subscriptions.forEach(subs => subs.unsubscribe());
   }
 
   // =================================
@@ -80,7 +80,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
   // ================================
 
   /**
-   * Verifica si el usuario en sesión tiene
+   * Verifica si el usuario en sesi�n tiene
    * permisos de administrador
    * @returns {boolean}
    */
@@ -117,7 +117,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
    */
   public handleResponseNull(): void {
     this.showToastr({
-      title: "No se ha establecido una conexión con el servidor.",
+      title: "No se ha establecido una conexi�n con el servidor.",
       status: "basic",
     });
   }
@@ -161,10 +161,10 @@ export class InsumosComponent implements OnInit, OnDestroy {
     });
 
     const subs = this.allObervable.subscribe(
-      (response) => {
+      response => {
         if (response) {
           if (response.errors) {
-            this.handleError({ error: response.errors });
+            this.handleError({ error: response.message });
           } else {
             const objetos = response as any[];
             this.source.load(objetos.sort(this.sortCreatedAt));
@@ -174,7 +174,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
           this.source.load([]);
         }
       },
-      (error) => {
+      error => {
         this.handleError({ error });
         this.cargando = false;
         this.source.load([]);
@@ -186,6 +186,8 @@ export class InsumosComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(subs);
   }
+
+ 
 
   /**
    * Crea un objeto usando la msmart table
@@ -200,17 +202,17 @@ export class InsumosComponent implements OnInit, OnDestroy {
       });
       return;
     }
-
+   
     const request = this.mainService.post({
       api: `${this.API_ALL}`,
-      data: content.newData,
+      data:  content.newData,
     });
 
     request.subscribe(
-      (response) => {
+      response => {
         if (response) {
           if (response.errors) {
-            this.handleError({ error: response.errors });
+            this.handleError({ error: response.message });
           } else {
             this.handleSuccess({ title: "Creado!" });
             if (content) content.confirm.resolve(content.newData);
@@ -219,7 +221,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
           this.handleResponseNull();
         }
       },
-      (error) => {
+      error => {
         this.handleError({ error });
       },
       () => {}
@@ -234,7 +236,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
   public onUpdate({ content }: { content: any }): void {
     if (!content || (content && !content.newData)) {
       this.showToastr({
-        title: "Selección inválida.",
+        title: "Seleccion invalida.",
         status: "warning",
       });
       return;
@@ -246,10 +248,10 @@ export class InsumosComponent implements OnInit, OnDestroy {
     });
 
     request.subscribe(
-      (response) => {
+      response => {
         if (response) {
           if (response.errors) {
-            this.handleError({ error: response.errors });
+            this.handleError({ error: response.message });
           } else {
             this.handleSuccess({ title: "Actualizado!" });
             if (content) content.confirm.resolve(content.newData);
@@ -258,7 +260,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
           this.handleResponseNull();
         }
       },
-      (error) => {
+      error => {
         this.handleError({ error });
       }
     );
@@ -272,14 +274,14 @@ export class InsumosComponent implements OnInit, OnDestroy {
   public onDelete({ content }: { content: any }): void {
     if (!content) {
       this.showToastr({
-        title: "Selección inválida.",
+        title: "Selecci�n inv�lida.",
         status: "warning",
       });
       return;
     }
 
     const msn =
-      "Se eliminará un objeto. Esta acción no se puede revertir, seguro?";
+      "Se eliminara un objeto. Esta accion no se puede revertir, seguro?";
 
     if (!confirm(`${msn}`)) {
       return;
@@ -290,10 +292,10 @@ export class InsumosComponent implements OnInit, OnDestroy {
     });
 
     request.subscribe(
-      (response) => {
+      response => {
         if (response) {
           if (response.errors) {
-            this.handleError({ error: response.errors });
+            this.handleError({ error: response.message });
           } else {
             this.handleSuccess({ title: "Eliminado!" });
             if (content) content.confirm.resolve(content.newData);
@@ -302,7 +304,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
           this.handleResponseNull();
         }
       },
-      (error) => {
+      error => {
         this.handleError({ error });
       }
     );
@@ -311,21 +313,23 @@ export class InsumosComponent implements OnInit, OnDestroy {
   // =================================
   // Metodos Genericos
   // ================================
-
+ 
+ 
   /**
    * Nebular Smart Table configuration
    * @returns void
    */
   public config(): void {
+  
     // configuracion de la Tabla Smart
-
-    this.settings = {
-      pager: {
-        display: true,
-        perPage: 15,
+ 		
+	this.settings = {
+    	pager: {
+        	display: true,
+        	perPage: 15,
       },
       hideSubHeader: false,
-
+      
       actions: {
         columnTitle: "Opciones",
         add: true,
@@ -334,7 +338,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
         delete: true,
         position: "left",
       },
-
+     
       delete: {
         deleteButtonContent: '<i class="nb-trash"></i>',
         confirmDelete: true,
@@ -353,18 +357,54 @@ export class InsumosComponent implements OnInit, OnDestroy {
       },
       mode: "inline",
       columns: {
-        nombre: {
-          title: "Nombre",
-          editable: true,
-          filter: true,
-          width: "45%",
-        },
-        sku: {
-          title: "SKU",
-          editable: true,
-          filter: true,
-          width: "45%",
-        },
+      		Nombre: {
+	          title: "Nombre",
+	          editable: true,
+	          filter: true,
+	          width: "11%",
+	        },
+      		sku: {
+	          title: "SKU",
+	          editable: false,
+	          filter: true,
+	          width: "11%",
+	        },
+      		InventarioActual: {
+	          title: "Inventario Actual",
+	          editable: true,
+	          filter: true,
+	          width: "11%",
+	        },
+      		StockMinimo: {
+	          title: "Stock Minimo",
+	          editable: true,
+	          filter: true,
+	          width: "11%",
+	        },
+      		StockMedio: {
+	          title: "Stock Medio",
+	          editable: true,
+	          filter: true,
+	          width: "11%",
+	        },
+      		StockMaximo: {
+	          title: "Stock Maximo",
+	          editable: true,
+	          filter: true,
+	          width: "11%",
+	        },
+      		Unidad: {
+	          title: "Unidad",
+	          editable: true,
+	          filter: true,
+	          width: "11%",
+	        },
+      		ReOrden: {
+	          title: "Re Orden",
+	          editable: true,
+	          filter: true,
+	          width: "11%",
+	        },
       },
     };
   }
@@ -392,7 +432,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
 
   /**
    * Muestra una notificacion estilo Toastr en la pantalla actual
-   * @param  {string} position determina en que parte de la pantalla se representará el Toastr
+   * @param  {string} position determina en que parte de la pantalla se representar� el Toastr
    * @param  {any} title titulo del Toastr
    * @param  {any} message contenido del Toastr
    * @param  {any} status puede ser (basic, primary, success, info, warning, danger, control)
@@ -425,10 +465,10 @@ export class InsumosComponent implements OnInit, OnDestroy {
    * @return void
    */
   public routerNavigateTo({ path }: { path: string }): void {
-    this.router.navigate([path]).then((fulfilled) => {
+    this.router.navigate([path]).then(fulfilled => {
       if (!fulfilled) {
         this.showToastr({
-          title: "Dirección URL no válida.",
+          title: "Direcci�n URL no v�lida.",
           status: "basic",
         });
       }
@@ -438,7 +478,7 @@ export class InsumosComponent implements OnInit, OnDestroy {
   /**
    * Abre un dialogo estilo nebular
    * @param  {any} dialog referencia al template en html
-   * que contiene el dialogo. Debería der tipye ElementRef o TypeReference
+   * que contiene el dialogo. Deber�a der tipye ElementRef o TypeReference
    * @returns void
    */
   public showDialog({ dialog }: { dialog: any }): void {

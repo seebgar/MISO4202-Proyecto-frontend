@@ -1,75 +1,46 @@
 <nb-layout windowMode>
-  <nb-layout-column>
-    <nb-card>
-      <h2>Usuarios</h2>
-    </nb-card>
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <nb-card>
-        <nb-card-body class="example-items-rows">
-          <input
-            formControlName="name"
-            type="text"
-            nbInput
-            status="basic"
-            placeholder="Nombres"
-          />
-        </nb-card-body>
-        <nb-card-body class="example-items-rows">
-          <input
-            formControlName="email"
-            type="email"
-            nbInput
-            status="basic"
-            placeholder="Email"
-          />
-        </nb-card-body>
-        <nb-card-body class="example-items-rows">
-          <input
-            formControlName="password"
-            type="password"
-            nbInput
-            status="basic"
-            placeholder="Password"
-          />
-        </nb-card-body>
-        <nb-card-body class="example-items-rows">
-          <button [disabled]="userForm.invalid" nbButton status="basic">
-            Ingresar
-          </button>
-        </nb-card-body>
-      </nb-card>
-    </form>
-    <nb-card>
-      <nb-card-body
-        [nbSpinner]="loading"
-        nbSpinnerStatus="primary"
-        nbSpinnerSize="large"
-        nbSpinnerMessage="Cargando"
-        style="min-height: 100px;"
-      >
-        <div class="row" style="margin-bottom: 1rem;">
-          <div class="col-6">
-            <input
-              #search
-              class="d-inline p-2 form-control"
-              type="text"
-              placeholder="Buscar..."
-            />
-          </div>
-          <div class="col-6">
-            <button
-              nbButton
-              status="success"
-              size="xsmall"
-              class="d-inline p-2 float-right"
-            >
-              <i class="fa fa-plus"></i> Agregar
-            </button>
-          </div>
-        </div>
-        <ng2-smart-table [settings]="settings" [source]="source">
-        </ng2-smart-table>
-      </nb-card-body>
-    </nb-card>
-  </nb-layout-column>
+    <nb-layout-column>
+
+        <nb-card>
+            <h2>Usuarios</h2>
+        </nb-card>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+            <nb-card>
+                <nb-card-body class="example-items-rows">
+                    <input formControlName="name" type="text" nbInput status="basic" placeholder="Nombres">
+                </nb-card-body>
+                <nb-card-body class="example-items-rows">
+                    <input formControlName="email" type="email" nbInput status="basic" placeholder="Email">
+                </nb-card-body>
+                <nb-card-body class="example-items-rows">
+                    <input formControlName="password" type="password" nbInput status="basic" placeholder="Password">
+                </nb-card-body>
+                <nb-card-body class="example-items-rows">
+                    <input formControlName="role" type="text" nbInput status="basic" placeholder="Rol">
+                </nb-card-body>                
+                <nb-card-body class="example-items-rows">
+                    <button [disabled]="userForm.invalid" nbButton status="basic">Ingresar</button>
+                </nb-card-body>
+            </nb-card>
+        </form>
+        <nb-card>
+            <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="large"
+                nbSpinnerMessage="Cargando" style="min-height: 100px;">
+                <div class="row" style="margin-bottom: 1rem;">
+                    <div class="col-6">
+                        <input #search class="d-inline p-2 form-control" type="text" placeholder="Buscar..." />
+                    </div>
+                    <div class="col-6">
+                        <button nbButton status="success" size="xsmall" class="d-inline p-2 float-right">
+                            <i class="fa fa-plus"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+                <ng2-smart-table [settings]="settings" [source]="source">
+                </ng2-smart-table>
+            </nb-card-body>
+        </nb-card>
+
+    </nb-layout-column>
 </nb-layout>

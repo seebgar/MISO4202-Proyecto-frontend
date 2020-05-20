@@ -14,7 +14,7 @@ export interface UserModel {
 
 @Component({
   templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.scss"],
+  //styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent implements OnInit {
   private showToastr({
@@ -88,7 +88,7 @@ export class RegisterComponent implements OnInit {
       name: this.userForm.controls.name.value,
       email: this.userForm.controls.email.value,
       password: this.userForm.controls.password.value,
-      role: this.userForm.controls.role.value,
+      //role: this.userForm.controls.role.value,
     };
 
     this.mainService
@@ -140,7 +140,7 @@ export class RegisterComponent implements OnInit {
           editable: false,
         },
         role: {
-          title: "role",
+          title: "Rol",
           editable: false,
         },
       },
