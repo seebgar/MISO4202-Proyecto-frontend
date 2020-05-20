@@ -22,7 +22,7 @@ export class DataComponent implements OnInit {
   /* Indica el estado de carga */
   public cargando: boolean = false;
 
-  public api: any = { route: "ordenesdecompra" };
+  public api: any = { route: "insumos" };
 
   /* Child Refs */
   @ViewChild("csvReader") csvReader: any;
@@ -198,14 +198,113 @@ export class DataComponent implements OnInit {
     for (let i = 1; i < csvRecordsArray.length; i++) {
       let curruntRecord = (<string>csvRecordsArray[i]).split(",");
       if (curruntRecord.length == headerLength) {
-        let csvRecord: any = {};
-        csvRecord.nombre = curruntRecord[0].trim();
-        csvRecord.sku = curruntRecord[1].trim();
-        csvArr.push(csvRecord);
+        // dinamico
+
+        if (this.api.route === "insumos") {
+          csvArr = [];
+          let csvRecord: any = this.objectInsumos({ curruntRecord });
+          csvArr.push(csvRecord);
+        }
+        if (this.api.route === "proveedores") {
+          csvArr = [];
+          let csvRecord: any = this.objectProveedores({ curruntRecord });
+          csvArr.push(csvRecord);
+        }
+        if (this.api.route === "productos") {
+          csvArr = [];
+          let csvRecord: any = this.objectProductos({ curruntRecord });
+          csvArr.push(csvRecord);
+        }
+        if (this.api.route === "ordenesdecompra") {
+          csvArr = [];
+          let csvRecord: any = this.objectOrdenesDeCompra({ curruntRecord });
+          csvArr.push(csvRecord);
+        }
       }
     }
     return csvArr;
   }
+
+  // =================================
+  //OBJETO CONSTRUCTOR A PERSITIR
+  // ================================
+
+  /**
+   * DINAMICO
+   * @param param0
+   */
+
+  private objectInsumos({ curruntRecord }: { curruntRecord: any[] }): any {
+    // dependen de los atributos
+    let csvRecord: any = {};
+
+    // dinamico
+
+    csvRecord.nombre = curruntRecord[0].trim();
+    csvRecord.sku = curruntRecord[1].trim();
+    csvRecord.inventarioActual = curruntRecord[2].trim();
+    csvRecord.stockMinimo = curruntRecord[3].trim();
+    csvRecord.stockMedio = curruntRecord[4].trim();
+    csvRecord.stockMaximo = curruntRecord[5].trim();
+    csvRecord.unidad = curruntRecord[6].trim();
+    csvRecord.reOrden = curruntRecord[7].trim();
+    // estatico
+    return csvRecord;
+  }
+
+  private objectProveedores({ curruntRecord }: { curruntRecord: any[] }): any {
+    // dependen de los atributos
+    let csvRecord: any = {};
+
+    // dinamico
+
+    csvRecord.razonSocial = curruntRecord[0].trim();
+    csvRecord.nit = curruntRecord[1].trim();
+    csvRecord.direccion = curruntRecord[2].trim();
+    csvRecord.telefono = curruntRecord[3].trim();
+    csvRecord.ordenesEnProceso = curruntRecord[4].trim();
+    csvRecord.ordenesCompletadas = curruntRecord[5].trim();
+    // estatico
+    return csvRecord;
+  }
+
+  private objectProductos({ curruntRecord }: { curruntRecord: any[] }): any {
+    // dependen de los atributos
+    let csvRecord: any = {};
+
+    // dinamico
+
+    csvRecord.nombre = curruntRecord[0].trim();
+    csvRecord.inventarioActual = curruntRecord[1].trim();
+    csvRecord.insumos = curruntRecord[2].trim();
+    // estatico
+    return csvRecord;
+  }
+
+  private objectOrdenesDeCompra({
+    curruntRecord,
+  }: {
+    curruntRecord: any[];
+  }): any {
+    // dependen de los atributos
+    let csvRecord: any = {};
+
+    // dinamico
+
+    csvRecord.recibido = curruntRecord[0].trim();
+    csvRecord.insumos = curruntRecord[1].trim();
+    csvRecord.descripcion = curruntRecord[2].trim();
+    csvRecord.ajustada = curruntRecord[3].trim();
+    csvRecord.anulada = curruntRecord[4].trim();
+    csvRecord.fechaLlegada = curruntRecord[5].trim();
+    csvRecord.valorTotal = curruntRecord[6].trim();
+    // estatico
+    return csvRecord;
+  }
+
+  // =================================
+  //VALIDACION DE ARCHIVO
+  // ================================
 
   private isValidCSVFile({ file }: { file: any }) {
     if (!file) return false;
