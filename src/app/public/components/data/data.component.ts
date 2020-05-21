@@ -201,27 +201,24 @@ export class DataComponent implements OnInit {
         // dinamico
 
         if (this.api.route === "insumos") {
-          csvArr = [];
           let csvRecord: any = this.objectInsumos({ curruntRecord });
           csvArr.push(csvRecord);
         }
         if (this.api.route === "proveedores") {
-          csvArr = [];
           let csvRecord: any = this.objectProveedores({ curruntRecord });
           csvArr.push(csvRecord);
         }
         if (this.api.route === "productos") {
-          csvArr = [];
           let csvRecord: any = this.objectProductos({ curruntRecord });
           csvArr.push(csvRecord);
         }
         if (this.api.route === "ordenesdecompra") {
-          csvArr = [];
           let csvRecord: any = this.objectOrdenesDeCompra({ curruntRecord });
           csvArr.push(csvRecord);
         }
       }
     }
+
     return csvArr;
   }
 
