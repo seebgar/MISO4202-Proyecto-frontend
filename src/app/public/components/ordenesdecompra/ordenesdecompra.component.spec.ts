@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
+import { HttpClientModule } from '@angular/common/http';
+import { NbToastrService, NbDialogService } from '@nebular/theme';
+
+
+
 import { OrdenesDeCompraComponent } from './ordenesdecompra.component';
 
 describe('OrdenesDeCompraComponent', () => {
@@ -11,6 +16,7 @@ describe('OrdenesDeCompraComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ OrdenesDeCompraComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [HttpClientModule, NbToastrService, NbDialogService],
     })
     .compileComponents();
   }));

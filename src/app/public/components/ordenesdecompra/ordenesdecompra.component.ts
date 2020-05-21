@@ -357,43 +357,43 @@ export class OrdenesDeCompraComponent implements OnInit, OnDestroy {
       },
       mode: "inline",
       columns: {
-      		Recibido: {
+      		recibido: {
 	          title: "Recibido",
 	          editable: true,
 	          filter: true,
 	          width: "12%",
 	        },
-      		Insumos: {
+      		insumos: {
 	          title: "Insumos",
 	          editable: true,
 	          filter: true,
 	          width: "12%",
 	        },
-      		Descripcion: {
+      		descripcion: {
 	          title: "Descripción",
 	          editable: true,
 	          filter: true,
 	          width: "12%",
 	        },
-      		Ajustada: {
+      		ajustada: {
 	          title: "Ajustada",
 	          editable: true,
 	          filter: true,
 	          width: "12%",
 	        },
-      		Anulada: {
+      		anulada: {
 	          title: "Anulada",
 	          editable: true,
 	          filter: true,
 	          width: "12%",
 	        },
-      		FechaLLegada: {
+      		fechaLlegada: {
 	          title: "Fecha de llegada",
 	          editable: true,
 	          filter: true,
 	          width: "12%",
 	        },
-      		ValorTotal: {
+      		valorTotal: {
 	          title: "Valor Total",
 	          editable: true,
 	          filter: true,

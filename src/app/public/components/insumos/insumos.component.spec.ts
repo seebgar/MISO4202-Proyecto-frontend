@@ -1,19 +1,24 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
-import { InsumosComponent } from "./insumos.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
+import { NbToastrService, NbDialogService } from '@nebular/theme';
 
-describe("InsumosComponent", () => {
+
+
+import { InsumosComponent } from './insumos.component';
+
+describe('InsumosComponent', () => {
   let component: InsumosComponent;
   let fixture: ComponentFixture<InsumosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [InsumosComponent],
+      declarations: [ InsumosComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [HttpClientModule],
-    }).compileComponents();
+      imports: [HttpClientModule, NbToastrService, NbDialogService],
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,7 +27,7 @@ describe("InsumosComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
