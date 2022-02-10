@@ -40,7 +40,7 @@
     "jquery": "^3.4.1",
     "nebular-icons": "^1.1.0",
     "ng2-smart-table": "^1.6.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "normalize.css": "^8.0.1",
     "pace-js": "^1.0.2",
     "path": "^0.12.7",
