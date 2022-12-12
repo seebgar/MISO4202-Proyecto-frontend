@@ -36,7 +36,7 @@
     "chart.js": "^2.9.3",
     "cors": "^2.8.5",
     "eva-icons": "^1.1.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jquery": "^3.4.1",
     "nebular-icons": "^1.1.0",
     "ng2-smart-table": "^1.6.0",
